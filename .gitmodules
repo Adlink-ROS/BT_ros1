@@ -1,0 +1,3 @@
+[submodule "BehaviorTree.CPP"]
+	path = BehaviorTree.CPP
+	url = https://github.com/airuchen/BehaviorTree.CPP.git
