@@ -1,0 +1,51 @@
+<root main_tree_to_execute = "MainTree" >
+	<BehaviorTree ID="MainTree">
+		<Sequence>
+<!--
+			<SetBlackboard output_key="Initial_pose" value="-6.615;-7.224;-0.245" /> 
+			<SetBlackboard output_key="Goal_a" value="-4.550;0.0;-0.405" /> 
+			<SetBlackboard output_key="Goal_b" value="-2.560;-0.627;0.000)" /> 
+			<SetBlackboard output_key="Goal_c" value="-1.5;1.8;0.0" />
+-->
+
+			<SetBlackboard output_key="Initial_pose" value="-7.2;-7.6;0.000" /> 
+			<SetBlackboard output_key="Goal_a" value="-4.3;-0.2420;0.000" /> 
+			<SetBlackboard output_key="Goal_b" value="-2.56;-0.6.27;0.000" /> 
+			<SetBlackboard output_key="Goal_c" value="-4.238;-7.352;0.000" /> 
+			<Fallback>
+				<Repeat num_cycles="10">
+					<Sequence>
+						<SubTree ID="MoveRobot" target="Initial_pose" />
+						<SubTree ID="MoveRobot" target="Goal_a" />
+						<SubTree ID="MoveRobot" target="Goal_b" />
+						<SubTree ID="MoveRobot" target="Goal_c" />
+						<!--<SubTree ID="MoveRobot" target="Initial_pose" /> -->
+					</Sequence>
+				</Repeat>
+				<AlarmEventLED />
+			</Fallback>
+		</Sequence>
+	</BehaviorTree>
+
+
+	<BehaviorTree ID="MoveRobot">
+		<Sequence name="SetGoal">
+			<MoveBase goal="{target}" />
+		</Sequence>
+	</BehaviorTree>
+ 
+</root>
+
+<!--
+[ INFO] [1573719546.006736679]: Setting goal: Frame:map, Position(-6.696, -7.559, 0.000), Orientation(0.000, 0.000, -0.858, 0.513) = Angle: -2.064
+
+[ INFO] [1573719552.568529037]: Setting goal: Frame:map, Position(-7.198, -7.590, 0.000), Orientation(0.000, 0.000, 0.954, -0.299) = Angle: -2.534
+
+[ INFO] [1573719558.592781918]: Setting goal: Frame:map, Position(-4.366, -0.242, 0.000), Orientation(0.000, 0.000, -0.812, 0.584) = Angle: -1.894
+
+[ INFO] [1573719585.400888252]: Setting goal: Frame:map, Position(-2.560, -0.627, 0.000), Orientation(0.000, 0.000, -0.801, 0.599) = Angle: -1.858
+
+[ INFO] [1573719625.179878448]: Setting goal: Frame:map, Position(-4.238, -7.352, 0.000), Orientation(0.000, 0.000, -0.809, 0.588) = Angle: -1.884
+
+[ INFO] [1573719646.560236975]: Setting goal: Frame:map, Position(-6.818, -7.538, 0.000), Orientation(0.000, 0.000, 0.998, 0.060) = Angle: 3.021
+-->
