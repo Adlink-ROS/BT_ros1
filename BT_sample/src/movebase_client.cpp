@@ -37,7 +37,7 @@ BT::NodeStatus MoveBase::tick() {
 
   if (_aborted) {
     // this happens only if method halt() was invoked
-    _client.cancelAllGoals();
+    //_client.cancelAllGoals();
     ROS_ERROR("MoveBase aborted");
     return BT::NodeStatus::FAILURE;
   }

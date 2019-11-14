@@ -34,7 +34,9 @@ catkin_package(
 ## Your package locations should be listed before other locations
 
 include_directories( ${catkin_INCLUDE_DIRS})
+include_directories(/opt/sema/include/)
 
+link_directories(/opt/sema/binary/linux64/lib/)
 
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
@@ -58,4 +60,5 @@ add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catk
 ## Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
+  semaeapi
 )

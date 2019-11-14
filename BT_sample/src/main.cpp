@@ -1,5 +1,8 @@
 #include "wait_for_button.h"
 #include "movebase_client.h"
+#include "alarm_event_led.h"
+#include "chk_low_battery.h"
+#include "always_running.h"
 #include <behaviortree_cpp_v3/bt_factory.h>
 #include <behaviortree_cpp_v3/loggers/bt_cout_logger.h>
 
@@ -18,7 +21,10 @@ int main(int argc, char **argv) {
   BehaviorTreeFactory factory;
 
   factory.registerNodeType<MoveBase>("MoveBase");
+  factory.registerSimpleCondition("CheckBattery", CheckBattery, {BT::InputPort<int>("wait_tick")});
   factory.registerNodeType<WaitForButton>("WaitForButton");
+  factory.registerNodeType<AlarmEventLED>("AlarmEventLED");
+  factory.registerNodeType<AlwaysRunning>("AlwaysRunning");
 
   // Trees are created at deployment-time (i.e. at run-time, but only once at
   // the beginning). The currently supported format is XML. IMPORTANT: when the
@@ -33,7 +39,7 @@ int main(int argc, char **argv) {
   while (ros::ok() && status == NodeStatus::RUNNING) {
     status = tree.root_node->executeTick();
     // Sleep 100 milliseconds
-    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
   }
 
   return 0;
