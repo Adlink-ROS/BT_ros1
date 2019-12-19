@@ -12,7 +12,7 @@ int main(int argc, char **argv) {
 
   ros::NodeHandle nh("~");
   std::string xml_filename;
-  nh.param<std::string>("file", xml_filename, "/home/ros/catkin_kk_ws/src/BT_ros1/BT_sample/cfg/bt_test.xml");
+  nh.param<std::string>("file", xml_filename, "/home/ros/catkin_ws/src/BT_ros1/BT_sample/cfg/bt_navigation_demo.xml");
   ROS_INFO("Loading XML : %s", xml_filename.c_str());
 
   // We use the BehaviorTreeFactory to register our custom nodes
