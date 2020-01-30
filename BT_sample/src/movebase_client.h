@@ -43,15 +43,15 @@ class MoveBase : public BT::AsyncActionNode
 public:
 
     MoveBase(const std::string& name, const BT::NodeConfiguration& config)
-        : BT::AsyncActionNode(name, config),
-          _client("move_base", true)
+        : BT::AsyncActionNode(name, config)
     {
     }
 
     // It is mandatory to define this static method.
     static BT::PortsList providedPorts()
     {
-        return{ BT::InputPort<Pose2D>("goal") };
+        return{ BT::InputPort<Pose2D>("goal"),
+                BT::InputPort<std::string>("robot")};
     }
 
     virtual BT::NodeStatus tick() override;
@@ -63,8 +63,5 @@ public:
 
 private:
     typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
-    MoveBaseClient _client;
     bool _aborted;
 };
-
-

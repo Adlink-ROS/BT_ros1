@@ -1,0 +1,44 @@
+<root main_tree_to_execute = "MainTree" >
+	<BehaviorTree ID="MainTree">
+		<Sequence>
+			<SetBlackboard output_key="Goal_a" value="-6.432;3.35;0.000" />
+			<SetBlackboard output_key="Goal_b" value="-0.95;0.6;0.0" />
+      <SetBlackboard output_key="Goal_c" value="-1.488;3.7;0.00" />
+
+      <SetBlackboard output_key="robot1" value="tb3_0" />
+      <SetBlackboard output_key="robot2" value="tb3_1" />
+      <SetBlackboard output_key="robot3" value="omni_3" />
+
+      <RetryUntilSuccesful num_attempts="10">
+      <Parallel threshold="2">
+        <RetryUntilSuccesful num_attempts="10">
+			    <Fallback>
+			    	<Sequence>
+			    		<SubTree ID="MoveRobot" robot_num="robot1" target="Goal_a" />
+			    		<SubTree ID="MoveRobot" robot_num="robot1" target="Goal_b" />
+			    		<SubTree ID="MoveRobot" robot_num="robot1" target="Goal_c" />
+			    	</Sequence>
+          </Fallback>
+        </RetryUntilSuccesful>
+        <RetryUntilSuccesful num_attempts="10">
+			    <Fallback>
+			    	<Sequence>
+			    		<SubTree ID="MoveRobot" robot_num="robot2" target="Goal_b" />
+			    		<SubTree ID="MoveRobot" robot_num="robot2" target="Goal_c" />
+			    		<SubTree ID="MoveRobot" robot_num="robot2" target="Goal_a" />
+			    	</Sequence>
+          </Fallback>
+        </RetryUntilSuccesful>
+      </Parallel>
+        </RetryUntilSuccesful>
+		</Sequence>
+	</BehaviorTree>
+
+
+	<BehaviorTree ID="MoveRobot">
+		<Sequence name="SetGoal">
+      <MoveBase robot="{robot_num}" goal="{target}" />
+		</Sequence>
+	</BehaviorTree>
+
+</root>

@@ -12,7 +12,6 @@
 					<SubTree ID="MoveRobot" target="Goal_b" />
 					<SubTree ID="MoveRobot" target="Goal_c" />
 				</Sequence>
-				<AlarmEventLED />
 			</Fallback>
 		</Sequence>
 	</BehaviorTree>
