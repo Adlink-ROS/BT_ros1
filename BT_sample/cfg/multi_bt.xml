@@ -7,7 +7,7 @@
 
       <SetBlackboard output_key="robot1" value="tb3_0" />
       <SetBlackboard output_key="robot2" value="tb3_1" />
-      <SetBlackboard output_key="robot3" value="omni_3" />
+      <SetBlackboard output_key="robot3" value="tb3_2" />
 
       <RetryUntilSuccesful num_attempts="10">
       <Parallel threshold="2">
@@ -26,6 +26,15 @@
 			    		<SubTree ID="MoveRobot" robot_num="robot2" target="Goal_b" />
 			    		<SubTree ID="MoveRobot" robot_num="robot2" target="Goal_c" />
 			    		<SubTree ID="MoveRobot" robot_num="robot2" target="Goal_a" />
+			    	</Sequence>
+          </Fallback>
+        </RetryUntilSuccesful>
+        <RetryUntilSuccesful num_attempts="10">
+			    <Fallback>
+			    	<Sequence>
+			    		<SubTree ID="MoveRobot" robot_num="robot3" target="Goal_c" />
+			    		<SubTree ID="MoveRobot" robot_num="robot3" target="Goal_b" />
+			    		<SubTree ID="MoveRobot" robot_num="robot3" target="Goal_a" />
 			    	</Sequence>
           </Fallback>
         </RetryUntilSuccesful>
