@@ -1,9 +1,15 @@
 <root main_tree_to_execute = "MainTree" >
 	<BehaviorTree ID="MainTree">
 		<Sequence>
-			<SetBlackboard output_key="Goal_a" value="0.55;0.229;0.000" />
-			<SetBlackboard output_key="Goal_b" value="1.2;1.0;0.000" />
-			<SetBlackboard output_key="Goal_c" value="0.92;0.455;0.000" />
+			<SetBlackboard output_key="Goal_1" value="1.403;-0.301;1.37" />
+			<SetBlackboard output_key="Goal_2" value="1.656;-1.535;1.132" />
+			<SetBlackboard output_key="Goal_3" value="1.052;-3.011;-2.688" />
+			<SetBlackboard output_key="Goal_4" value="0.872;-0.011;-1.792" />
+			<SetBlackboard output_key="Goal_5" value="0.653;-1.691;0.0" />
+			<SetBlackboard output_key="Goal_6" value="0.376;-2.672;0.0" />
+			<SetBlackboard output_key="Goal_7" value="0.072;0.253;0.0" />
+			<SetBlackboard output_key="Goal_8" value="-0.229;-1.106;0.0" />
+			<SetBlackboard output_key="Goal_9" value="-0.365;-2.568;0.0" />
 
 
 			<SetBlackboard output_key="robot1" value="omni_0" />
@@ -13,30 +19,43 @@
 			<RetryUntilSuccesful num_attempts="3">
 				<Parallel threshold="3">
 					<Repeat num_cycles="-1">
-						<RetryUntilSuccesful num_attempts="10">
+						<RetryUntilSuccesful num_attempts="2">
+							<Fallback>
 							<Sequence>
-								<SubTree ID="MoveRobot" robot_num="robot1" target="Goal_a" />
-								<SubTree ID="MoveRobot" robot_num="robot1" target="Goal_b" />
-								<SubTree ID="MoveRobot" robot_num="robot1" target="Goal_c" />
+								<SubTree ID="MoveRobot" robot_num="robot1" target="Goal_5" />
+								<SubTree ID="MoveRobot" robot_num="robot1" target="Goal_1" />
+								<SubTree ID="MoveRobot" robot_num="robot1" target="Goal_9" />
 							</Sequence>
+								<SubTree ID="MoveRobot" robot_num="robot1" target="Goal_2" />
+
+						</Fallback>
 						</RetryUntilSuccesful>
 					</Repeat>
 					<Repeat num_cycles="-1">
-						<RetryUntilSuccesful num_attempts="10">
+						<RetryUntilSuccesful num_attempts="2">
+							<Fallback>
 							<Sequence>
-								<SubTree ID="MoveRobot" robot_num="robot2" target="Goal_c" />
-								<SubTree ID="MoveRobot" robot_num="robot2" target="Goal_a" />
-								<SubTree ID="MoveRobot" robot_num="robot2" target="Goal_b" />
+								<SubTree ID="MoveRobot" robot_num="robot2" target="Goal_2" />
+								<SubTree ID="MoveRobot" robot_num="robot2" target="Goal_4" />
+								<SubTree ID="MoveRobot" robot_num="robot2" target="Goal_7" />
 							</Sequence>
+								<SubTree ID="MoveRobot" robot_num="robot2" target="Goal_8" />
+
+						</Fallback>
 						</RetryUntilSuccesful>
+
 					</Repeat>
 					<Repeat num_cycles="-1">
-						<RetryUntilSuccesful num_attempts="10">
+						<RetryUntilSuccesful num_attempts="2">
+							<Fallback>
 							<Sequence>
-								<SubTree ID="MoveRobot" robot_num="robot3" target="Goal_b" />
-								<SubTree ID="MoveRobot" robot_num="robot3" target="Goal_c" />
-								<SubTree ID="MoveRobot" robot_num="robot3" target="Goal_a" />
+								<SubTree ID="MoveRobot" robot_num="robot3" target="Goal_8" />
+								<SubTree ID="MoveRobot" robot_num="robot3" target="Goal_6" />
+								<SubTree ID="MoveRobot" robot_num="robot3" target="Goal_3" />
 							</Sequence>
+								<SubTree ID="MoveRobot" robot_num="robot3" target="Goal_9" />
+
+						</Fallback>
 						</RetryUntilSuccesful>
 					</Repeat>
 				</Parallel>
