@@ -1,79 +1,54 @@
-## BT_ros1
+# BT_ros1
+
 Behavior Tree example for ROS1
 
-# Installation
-1. git clone this repo into your ROS workspace. (default: catkin_ws)
+# Build up environment
+
+1. git clone the repo.
 ```
-cd ~/catkin_ws/src
+mkdir -p ~/ros1_bt_ws/src
+cd ~/ros1_bt_ws/src
 git clone https://github.com/Adlink-ROS/BT_ros1.git
 ```
 
-2. Install dependencies with my favorite command line
+2. Install dependencies
 ```
-cd ~/catkin_ws
+cd ~/ros1_bt_ws
 rosdep install --from-paths src --ignore-src -r -y
 ```
 
-3. Install SEMA ( For those devices do not need SEMA, just simply delete all lines related to "sema". )
+3. Install SEMA if you needed
 
-4. Compile the workspace
+4. Build
 ```
-cd ~/catkin_ws
 catkin_make
 ```
 
-# Test 
+# Usage
 
-## Prerequisite
-In this test, we will use turtlebot3 as the platform. Therefore, you need to install ros1 and Gazebo first.
-```
-sudo apt install ros-melodic-desktop-full ros-melodic-turtlebot3 ros-melodic-turtlebot3-gazebo
-```
+We use [NeuronBot2](https://github.com/Adlink-ROS/neuronbot2/tree/melodic-devel) as example.
+We will run Gazebo with NeuronBot2 and show a simple BT example.
 
-## Generate the map
+The BT example (refer to [bt_nav_mememan_interrupt.xml](BT_ros1/BT_sample/cfg/bt_nav_mememan_interrupt.xml)) will make NeuronBot2 move between Goal_a and Goal_b.
+If receiving `/interrupt_event`, which is `gohome`, then NeuronBot2 will move to Goal_c.
 
-### Terminal 1: Run Gazebo Emulator
+* Open 1st terminal and run mememan world. (melodic environment)
 ```
-export TURTLEBOT3_MODEL=waffle_pi
-roslaunch turtlebot3_gazebo turtlebot3_world.launch
+source ~/neuronbot2_ros1_ws/devel/setup.bash
+export GAZEBO_MODEL_PATH=~/neuronbot2_ros1_ws/src/neuronbot2/neuronbot2_gazebo/models
+roslaunch neuronbot2_gazebo neuronbot2_world.launch world_model:=mememan_world.model
 ```
-
-### Terminal 2: Run SLAM
+* Open 2nd terminal and run navigation. (melodic environment)
 ```
-export TURTLEBOT3_MODEL=waffle_pi
-roslaunch turtlebot3_slam turtlebot3_slam.launch
+source ~/neuronbot2_ros1_ws/devel/setup.bash
+roslaunch neuronbot2_nav neuronbot2_nav.launch map_name:=$HOME/neuronbot2_ros1_ws/src/neuronbot2/neuronbot2_nav/maps/mememan.yaml open_rviz:=true
 ```
-
-### Terminal 3: Teleop
+* Open 3rd termainal and run BT. (melodic environment) 
 ```
-export TURTLEBOT3_MODEL=waffle_pi
-roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+source ~/ros1_bt_ws/devel/setup.bash
+rosrun bt_sample node _file:=$HOME/ros1_bt_ws/src/BT_ros1/BT_sample/cfg/bt_nav_mememan_interrupt.xml
 ```
-Then, try to use your perfect control skill to map the map. 
-
-### Terminal 5 Save map
+* Open 4th terminal and pub interrupt event. (melodic environment)
 ```
-rosrun map_server map_saver -f ~/sim_map
+rostopic pub /interrupt_event std_msgs/String "gohome
 ```
-
-## Use BT for navigation
-
-### Terminal 1: Run Gazebo Emulator
-```
-export TURTLEBOT3_MODEL=waffle_pi
-roslaunch turtlebot3_gazebo turtlebot3_world.launch
-```
-
-### Terminal 2: Run navigation
-```
-export TURTLEBOT3_MODEL=waffle_pi
-roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=$HOME/sim_map.yaml
-```
-
-### Terminal 3: Run BT
-```
-source devel/local_setup.bash
-rosrun bt_sample node _file:=absolute_path/bt_test.xml
-```
-
-TODO: Put some pics
