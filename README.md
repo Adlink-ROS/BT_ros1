@@ -29,7 +29,7 @@ catkin_make
 We use [NeuronBot2](https://github.com/Adlink-ROS/neuronbot2/tree/melodic-devel) as example.
 We will run Gazebo with NeuronBot2 and show a simple BT example.
 
-The BT example (refer to [bt_nav_mememan_interrupt.xml](BT_ros1/BT_sample/cfg/bt_nav_mememan_interrupt.xml)) will make NeuronBot2 move between Goal_a and Goal_b.
+The BT example (refer to [bt_nav_mememan_interrupt.xml](BT_sample/cfg/bt_nav_mememan_interrupt.xml)) will make NeuronBot2 move between Goal_a and Goal_b.
 If receiving `/interrupt_event`, which is `gohome`, then NeuronBot2 will move to Goal_c.
 
 * Open 1st terminal and run mememan world. (melodic environment)
