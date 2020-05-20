@@ -17,9 +17,7 @@ cd ~/ros1_bt_ws
 rosdep install --from-paths src --ignore-src -r -y
 ```
 
-3. Install SEMA if you needed
-
-4. Build
+3. Build
 ```
 catkin_make
 ```
@@ -50,5 +48,5 @@ rosrun bt_sample node _file:=$HOME/ros1_bt_ws/src/BT_ros1/bt_xml/bt_nav_mememan_
 ```
 * Open 4th terminal and pub interrupt event. (melodic environment)
 ```
-rostopic pub /interrupt_event std_msgs/String "gohome
+rostopic pub /interrupt_event std_msgs/String "gohome"
 ```
