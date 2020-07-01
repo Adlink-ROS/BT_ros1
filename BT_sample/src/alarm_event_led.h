@@ -19,7 +19,7 @@ class AlarmEventLED : public BT::AsyncActionNode
             // init SEMA
             char addr[16] = "127.0.0.1";
             int ret = SemaEApiLibInitialize(false, IP_V4, addr, 0, (char *)"123", &libHandle_);
-            if (ret == EAPI_STATUS_SUCCESS) {
+            if (ret != EAPI_STATUS_SUCCESS) {
                 printf("[ERROR] NeuronGpio - Can't initialize SEMA Lib. Error code: %X\n", ret);
             }
             // init GPIO
