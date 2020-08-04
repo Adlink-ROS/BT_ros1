@@ -35,7 +35,7 @@ int main(int argc, char **argv) {
   NodeStatus status = NodeStatus::RUNNING;
   // Keep on ticking until you get either a SUCCESS or FAILURE state
   while (ros::ok() && status == NodeStatus::RUNNING) {
-    status = tree.root_node->executeTick();
+    status = tree.rootNode()->executeTick();
     // Sleep 100 milliseconds
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
   }
