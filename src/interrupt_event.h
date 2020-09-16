@@ -29,7 +29,7 @@ class InterruptEvent : public BT::SyncActionNode
         {
             std::string expect_event;
 
-            printf("Checking interrupt....\n");
+            //printf("Checking interrupt....\n");
             if (!getInput<std::string>("event", expect_event)) {
                 throw BT::RuntimeError("missing required input [event]");
             }

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 
-    <node pkg="bt_sample" type="node" name="bt_sample">
+    <node pkg="bt_sample" type="node" name="bt_sample" output="screen">
         <param name="file" value="$(find bt_sample)/bt_xml/bt_nav_mememan_interrupt.xml"/>
     </node>
 
