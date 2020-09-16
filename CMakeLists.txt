@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   behaviortree_cpp_v3
   roscpp
   std_msgs
+  object_msgs
 )
 
 

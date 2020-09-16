@@ -2,6 +2,7 @@
 #include "chk_low_battery.h"
 #include "always_running.h"
 #include "interrupt_event.h"
+#include "openvino_event.h"
 #include <behaviortree_cpp_v3/bt_factory.h>
 #include <behaviortree_cpp_v3/loggers/bt_cout_logger.h>
 
@@ -23,6 +24,7 @@ int main(int argc, char **argv) {
   factory.registerSimpleCondition("CheckBattery", CheckBattery, {BT::InputPort<int>("wait_tick")});
   factory.registerNodeType<AlwaysRunning>("AlwaysRunning");
   factory.registerNodeType<InterruptEvent>("InterruptEvent");
+  factory.registerNodeType<OpenVINOEvent>("OpenVINOEvent");
 
   // Trees are created at deployment-time (i.e. at run-time, but only once at
   // the beginning). The currently supported format is XML. IMPORTANT: when the
