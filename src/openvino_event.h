@@ -32,7 +32,7 @@ class OpenVINOEvent : public BT::SyncActionNode
         virtual BT::NodeStatus tick() override
         {
             std::string expect_object;
-
+            ros::Duration(1).sleep();
             if (!getInput<std::string>("object", expect_object)) {
                 throw BT::RuntimeError("missing required input [object]");
             }
@@ -40,12 +40,15 @@ class OpenVINOEvent : public BT::SyncActionNode
             detected_objects.clear();
             ros::spinOnce();
 
-            std::vector<std::string>::iterator it;
-            it = find(detected_objects.begin(), detected_objects.end(), expect_object);
-            if (it == detected_objects.end())
+            int cnt = std::count(detected_objects.begin(), detected_objects.end(), expect_object);
+            // The number of detected objects should be greater than 10 to avoid misbehavior
+            if (cnt > 10) {
+                fprintf(stderr, "Object['%s'] count=%d\n", expect_object.c_str(), cnt);
                 return BT::NodeStatus::FAILURE;
-            else
+            }
+            else {
                 return BT::NodeStatus::SUCCESS;
+            }
         }
 
     private:

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="use_openvino" default="false" />
+
+    <node if="$(arg use_openvino)" pkg="bt_sample" type="node" name="bt_sample" output="screen">
+        <param name="file" value="$(find bt_sample)/bt_xml/bt_nav_con1_obj_detection.xml"/>
+    </node>
+
+    <node unless="$(arg use_openvino)" pkg="bt_sample" type="node" name="bt_sample" output="screen">
+        <param name="file" value="$(find bt_sample)/bt_xml/bt_nav_con1.xml"/>
+    </node>
+
+</launch>

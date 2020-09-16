@@ -1,0 +1,33 @@
+<root main_tree_to_execute = "MainTree">
+    <BehaviorTree ID="MainTree">
+        <Sequence>
+            <SetBlackboard output_key="Goal_a" value="1.6830;-0.1947;0.0" />
+            <SetBlackboard output_key="Goal_b" value="-0.4924;0.8746;-3.14" />
+            <SetBlackboard output_key="Goal_c" value="0.0;0.0;0.0" />            
+            <Repeat num_cycles="-1">   
+                <Sequence>                 
+                    <Fallback>
+                        <OpenVINOEvent object="bottle"/>
+                        <Sequence>
+                            <SubTree ID="MoveRobot" target="Goal_a" />
+                            <SubTree ID="MoveRobot" target="Goal_c" />
+                        </Sequence>
+                    </Fallback>
+                    <Fallback>
+                        <OpenVINOEvent object="dog"/>
+                        <Sequence>
+                            <SubTree ID="MoveRobot" target="Goal_b" />
+                            <SubTree ID="MoveRobot" target="Goal_c" />
+                        </Sequence>
+                    </Fallback>                        
+                </Sequence>
+            </Repeat>
+        </Sequence>
+    </BehaviorTree>
+
+    <BehaviorTree ID="MoveRobot">
+        <Sequence name="SetGoal">
+            <MoveBase goal="{target}" />
+        </Sequence>
+    </BehaviorTree>
+</root>
