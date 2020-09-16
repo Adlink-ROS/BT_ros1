@@ -7,15 +7,26 @@ add_compile_options(-std=c++11)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS
-  actionlib
-  actionlib_msgs
-  behaviortree_cpp_v3
-  roscpp
-  std_msgs
-  object_msgs
-)
-
+option(BUILD_OPENVINO "Build OpenVINO" OFF)
+if(BUILD_OPENVINO STREQUAL "ON")
+   find_package(catkin REQUIRED COMPONENTS
+     actionlib
+     actionlib_msgs
+     behaviortree_cpp_v3
+     roscpp
+     std_msgs
+     object_msgs
+   )
+   add_definitions(-DSUPPORT_OPENVINO)
+else()
+   find_package(catkin REQUIRED COMPONENTS
+     actionlib
+     actionlib_msgs
+     behaviortree_cpp_v3
+     roscpp
+     std_msgs
+   )
+endif()
 
 ###################################
 ## catkin specific configuration ##

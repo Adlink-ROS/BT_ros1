@@ -20,6 +20,8 @@ rosdep install --from-paths src --ignore-src -r -y
 3. Build
 ```
 catkin_make
+# If you want to build with OpenVINO support
+catkin_make --cmake-args -DBUILD_OPENVINO=ON
 ```
 
 # Usage
