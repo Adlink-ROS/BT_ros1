@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+
+    <node pkg="bt_sample" type="node" name="bt_sample" output="screen">
+        <param name="file" value="$(find bt_sample)/bt_xml/bt_cmd_vel_obj_detection_demo_rossummerschool.xml"/>
+    </node>
+
+</launch>
