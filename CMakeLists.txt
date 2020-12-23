@@ -15,6 +15,7 @@ if(BUILD_OPENVINO STREQUAL "ON")
      behaviortree_cpp_v3
      roscpp
      std_msgs
+     move_base_msgs
      object_msgs
    )
    add_definitions(-DSUPPORT_OPENVINO)
@@ -25,6 +26,7 @@ else()
      behaviortree_cpp_v3
      roscpp
      std_msgs
+     move_base_msgs
    )
 endif()
 
