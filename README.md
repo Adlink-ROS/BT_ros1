@@ -2,6 +2,11 @@
 
 Behavior Tree example for ROS1
 
+# Support ROS version
+
+* melodic
+* noetic
+
 # Build up environment
 
 1. git clone the repo.
