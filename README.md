@@ -41,7 +41,7 @@ roslaunch neuronbot2_gazebo neuronbot2_world.launch world_model:=mememan_world.m
 * Open 2nd terminal and run navigation. (melodic environment)
 ```
 source ~/neuronbot2_ros1_ws/devel/setup.bash
-roslaunch neuronbot2_nav neuronbot2_nav.launch map_name:=$HOME/neuronbot2_ros1_ws/src/neuronbot2/neuronbot2_nav/maps/mememan.yaml open_rviz:=true
+roslaunch neuronbot2_nav bringup.launch map_name:=$HOME/neuronbot2_ros1_ws/src/neuronbot2/neuronbot2_nav/maps/mememan.yaml open_rviz:=true
 ```
 * Open 3rd termainal and run BT. (melodic environment) 
 ```
