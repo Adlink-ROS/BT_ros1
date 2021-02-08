@@ -11,14 +11,14 @@ Behavior Tree example for ROS1
 
 1. git clone the repo.
 ```
-mkdir -p ~/ros1_bt_ws/src
-cd ~/ros1_bt_ws/src
+mkdir -p ~/bt_ros1_ws/src
+cd ~/bt_ros1_ws/src
 git clone https://github.com/Adlink-ROS/BT_ros1.git
 ```
 
 2. Install dependencies
 ```
-cd ~/ros1_bt_ws
+cd ~/bt_ros1_ws
 rosdep install --from-paths src --ignore-src -r -y
 ```
 
@@ -50,8 +50,8 @@ roslaunch neuronbot2_nav bringup.launch map_name:=$HOME/neuronbot2_ros1_ws/src/n
 ```
 * Open 3rd termainal and run BT. (melodic environment) 
 ```
-source ~/ros1_bt_ws/devel/setup.bash
-rosrun bt_sample node _file:=$HOME/ros1_bt_ws/src/BT_ros1/bt_xml/bt_nav_mememan_interrupt.xml
+source ~/bt_ros1_ws/devel/setup.bash
+rosrun bt_sample node _file:=$HOME/bt_ros1_ws/src/BT_ros1/bt_xml/bt_nav_mememan_interrupt.xml
 ```
 * Open 4th terminal and pub interrupt event. (melodic environment)
 ```
