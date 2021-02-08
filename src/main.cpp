@@ -2,6 +2,7 @@
 #include "chk_low_battery.h"
 #include "always_running.h"
 #include "interrupt_event.h"
+#include "send_cmd_vel.h"
 #ifdef SUPPORT_OPENVINO
   #include "openvino_event.h"
 #endif
@@ -23,6 +24,7 @@ int main(int argc, char **argv) {
   BehaviorTreeFactory factory;
 
   factory.registerNodeType<MoveBase>("MoveBase");
+  factory.registerNodeType<SendCommandVel>("SendCommandVel");
   factory.registerSimpleCondition("CheckBattery", CheckBattery, {BT::InputPort<int>("wait_tick")});
   factory.registerNodeType<AlwaysRunning>("AlwaysRunning");
   factory.registerNodeType<InterruptEvent>("InterruptEvent");

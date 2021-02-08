@@ -1,0 +1,48 @@
+<root main_tree_to_execute = "MainTree">
+    <BehaviorTree ID="MainTree">
+        <Sequence>
+            <SetBlackboard output_key="Foward" value="i;0.5" />
+            <SetBlackboard output_key="Stop"   value="k;0.25"/>
+            <SetBlackboard output_key="Backward" value="<;0.5" /> 
+            <SetBlackboard output_key="Right" value="l;2" /> 
+            <SetBlackboard output_key="Left" value="j;2" /> 
+            <Repeat num_cycles="-1">   
+                <Sequence>                 
+                    <Fallback>
+                        <OpenVINOEvent object="bottle"/>
+                        <Sequence>
+                            <SubTree ID="MoveRobot" target="Foward" />
+                            <SubTree ID="MoveRobot" target="Stop" />
+                            <SubTree ID="MoveRobot" target="Backward" />
+                            <SubTree ID="MoveRobot" target="Stop" />
+                        </Sequence>
+                    </Fallback>    
+                    <Fallback>
+                        <OpenVINOEvent object="cat"/>
+                        <Sequence>
+                            <SubTree ID="MoveRobot" target="Backward" />
+                            <SubTree ID="MoveRobot" target="Stop" />
+                            <SubTree ID="MoveRobot" target="Foward" />
+                            <SubTree ID="MoveRobot" target="Stop" />
+                        </Sequence>
+                    </Fallback>                          
+                    <Fallback>
+                        <OpenVINOEvent object="dog"/>
+                        <Sequence>
+                            <SubTree ID="MoveRobot" target="Left" />
+                            <SubTree ID="MoveRobot" target="Stop" />
+                            <SubTree ID="MoveRobot" target="Right" />
+                            <SubTree ID="MoveRobot" target="Stop" />
+                        </Sequence>
+                    </Fallback>                          
+                </Sequence>
+            </Repeat>
+        </Sequence>
+    </BehaviorTree>
+
+    <BehaviorTree ID="MoveRobot">
+        <Sequence name="SetGoal">
+            <SendCommandVel movement="{target}" />
+        </Sequence>
+    </BehaviorTree>
+</root>
