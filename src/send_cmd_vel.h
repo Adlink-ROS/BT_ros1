@@ -84,7 +84,7 @@ BT::NodeStatus SendCommandVel::tick()
   char move_key= key[0];
   double time_input = BT::convertFromString<double>(parts[1]);
   uint32_t time = time_input*1000000;
-  fprintf(stderr, "time['%d']\n", time);
+  //fprintf(stderr, "time['%d']\n", time);
   
    // If the key corresponds to a key in moveBindings
   if (moveBindings.count(move_key) == 1)
@@ -93,9 +93,8 @@ BT::NodeStatus SendCommandVel::tick()
     x = moveBindings[move_key][0];
     y = moveBindings[move_key][1];
     z = moveBindings[move_key][2];
-    th = moveBindings[move_key][3];    
+    th = moveBindings[move_key][3];
   }
-
   // Otherwise if it corresponds to a key in speedBindings
   else if (speedBindings.count(move_key) == 1)
   {
@@ -103,7 +102,6 @@ BT::NodeStatus SendCommandVel::tick()
     speed = speed * speedBindings[move_key][0];
     turn = turn * speedBindings[move_key][1];  
   }
-
   // Otherwise, set the robot to stop
   else
   {
