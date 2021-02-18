@@ -31,29 +31,30 @@ catkin_make --cmake-args -DBUILD_OPENVINO=ON
 
 # Usage
 
-We use [NeuronBot2](https://github.com/Adlink-ROS/neuronbot2/tree/melodic-devel) as example.
 We will run Gazebo with NeuronBot2 and show a simple BT example.
+NeuronBot2 supports [melodic](https://github.com/Adlink-ROS/neuronbot2/tree/melodic-devel) & [noetic](https://github.com/Adlink-ROS/neuronbot2/tree/noetic-devel).
+Choose the version based on your ROS 1 environment.
 
 The BT example (refer to [bt_nav_mememan_interrupt.xml](bt_xml/bt_nav_mememan_interrupt.xml)) will make NeuronBot2 move between Goal_a and Goal_b.
 If receiving `/interrupt_event`, which is `gohome`, then NeuronBot2 will move to Goal_c.
 
-* Open 1st terminal and run mememan world. (melodic environment)
+* Open 1st terminal and run mememan world. (ROS 1 environment)
 ```
 source ~/neuronbot2_ros1_ws/devel/setup.bash
 export GAZEBO_MODEL_PATH=~/neuronbot2_ros1_ws/src/neuronbot2/neuronbot2_gazebo/models
 roslaunch neuronbot2_gazebo neuronbot2_world.launch world_model:=mememan_world.model
 ```
-* Open 2nd terminal and run navigation. (melodic environment)
+* Open 2nd terminal and run navigation. (ROS 1 environment)
 ```
 source ~/neuronbot2_ros1_ws/devel/setup.bash
 roslaunch neuronbot2_nav bringup.launch map_name:=$HOME/neuronbot2_ros1_ws/src/neuronbot2/neuronbot2_nav/maps/mememan.yaml open_rviz:=true
 ```
-* Open 3rd termainal and run BT. (melodic environment) 
+* Open 3rd termainal and run BT. (ROS 1 environment) 
 ```
 source ~/bt_ros1_ws/devel/setup.bash
 rosrun bt_sample node _file:=$HOME/bt_ros1_ws/src/BT_ros1/bt_xml/bt_nav_mememan_interrupt.xml
 ```
-* Open 4th terminal and pub interrupt event. (melodic environment)
+* Open 4th terminal and pub interrupt event. (ROS 1 environment)
 ```
 rostopic pub /interrupt_event std_msgs/String "gohome"
 ```
