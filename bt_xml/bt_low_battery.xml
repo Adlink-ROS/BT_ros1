@@ -1,10 +1,10 @@
 <root main_tree_to_execute = "MainTree">
     <BehaviorTree ID="MainTree">
         <Sequence>
-            <SetBlackboard output_key="Initial_pose" value="-6.615;-7.224;-0.245" />
-            <SetBlackboard output_key="Goal_a" value="-4.550;0.0;-0.405" />
-            <SetBlackboard output_key="Goal_b" value="-0.107;-0.281;2.989" />
-            <SetBlackboard output_key="Goal_c" value="-1.5;1.8;0.0" />
+            <SetBlackboard output_key="Initial_pose" value="-6.615;-7.224;-0.122;0.992" />
+            <SetBlackboard output_key="Goal_a" value="-4.550;0.0;0.201;0.979" />
+            <SetBlackboard output_key="Goal_b" value="-0.107;-0.281;0.997;0.076" />
+            <SetBlackboard output_key="Goal_c" value="-1.5;1.8;0.0;1.0" />
             <Fallback>
                 <ReactiveSequence>
                     <CheckBattery wait_tick="125" />

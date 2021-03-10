@@ -58,3 +58,16 @@ rosrun bt_sample node _file:=$HOME/bt_ros1_ws/src/BT_ros1/bt_xml/bt_nav_mememan_
 ```
 rostopic pub /interrupt_event std_msgs/String "gohome"
 ```
+
+# Note
+If you want to get the coordinate for navigation, you can run navigation and listen to the topic /goal_pose or open rviz to monitor tf.
+
+The position and orientation should be put into BT file and the orientation value we use here is Quaternion.
+
+Record X, Y in positoin and Z, W in orientation.
+![](readme_resource/inspect_rviz.png)
+
+Open xml file in bt_xml and modify robot checkpoint with " X ; Y ; Z ; W " format in SetBlackboard.
+![](readme_resource/bt_modify.png)
+
+If you only have Euler Angle and want to transfer to Quaternion, please refer to online tools, such as https://quaternions.online/

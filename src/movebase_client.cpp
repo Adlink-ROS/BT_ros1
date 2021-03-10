@@ -18,7 +18,7 @@ BT::NodeStatus MoveBase::tick() {
   // Reset this flag
   _aborted = false;
 
-  ROS_INFO("Sending goal %f %f", goal.x, goal.y);
+  ROS_INFO("Sending goal %f %f %f %f", goal.x, goal.y, goal.quaternion_z, goal.quaternion_w);
 
   // Build the message from Pose2D
   move_base_msgs::MoveBaseGoal msg;
@@ -26,8 +26,8 @@ BT::NodeStatus MoveBase::tick() {
   msg.target_pose.header.stamp = ros::Time::now();
   msg.target_pose.pose.position.x = goal.x;
   msg.target_pose.pose.position.y = goal.y;
-  tf::Quaternion rot = tf::createQuaternionFromYaw(goal.theta);
-  tf::quaternionTFToMsg(rot, msg.target_pose.pose.orientation);
+  msg.target_pose.pose.orientation.z = goal.quaternion_z;
+  msg.target_pose.pose.orientation.w = goal.quaternion_w;
 
   _client.sendGoal(msg);
 

@@ -1,9 +1,9 @@
 <root main_tree_to_execute = "MainTree">
     <BehaviorTree ID="MainTree">
         <Sequence>
-            <SetBlackboard output_key="Goal_a" value="5.2071;-0.1404;-0.056" />
-            <SetBlackboard output_key="Goal_b" value="0.0;0.0;-3.14" />
-            <SetBlackboard output_key="Goal_c" value="0.2438;2.7484;1.543" />            
+            <SetBlackboard output_key="Goal_a" value="5.2071;-0.1404;-0.028;1.0" />
+            <SetBlackboard output_key="Goal_b" value="0.0;0.0;-1.0;0.0" />
+            <SetBlackboard output_key="Goal_c" value="0.2438;2.7484;0.697;0.716" />            
             <Repeat num_cycles="-1">   
                 <Sequence>                 
                     <Fallback>
