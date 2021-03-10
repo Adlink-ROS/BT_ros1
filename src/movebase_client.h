@@ -10,7 +10,7 @@
 // Custom type
 struct Pose2D
 {
-    double x, y, theta;
+    double x, y, quaternion_z, quaternion_w;
 };
 
 
@@ -21,7 +21,7 @@ Pose2D convertFromString(StringView key)
 {
     // three real numbers separated by semicolons
     auto parts = BT::splitString(key, ';');
-    if (parts.size() != 3)
+    if (parts.size() != 4)
     {
         throw BT::RuntimeError("invalid input)");
     }
@@ -30,7 +30,8 @@ Pose2D convertFromString(StringView key)
         Pose2D output;
         output.x     = convertFromString<double>(parts[0]);
         output.y     = convertFromString<double>(parts[1]);
-        output.theta = convertFromString<double>(parts[2]);
+        output.quaternion_z = convertFromString<double>(parts[2]);
+        output.quaternion_w = convertFromString<double>(parts[3]);
         return output;
     }
 }
