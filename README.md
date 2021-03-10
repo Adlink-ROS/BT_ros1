@@ -1,6 +1,6 @@
 # BT_ros1
 
-Behavior Tree example for ROS1
+Behavior Tree example for ROS 1
 
 # Support ROS version
 
@@ -52,7 +52,7 @@ roslaunch neuronbot2_nav bringup.launch map_name:=$HOME/neuronbot2_ros1_ws/src/n
 * Open 3rd termainal and run BT. (ROS 1 environment) 
 ```
 source ~/bt_ros1_ws/devel/setup.bash
-rosrun bt_sample node _file:=$HOME/bt_ros1_ws/src/BT_ros1/bt_xml/bt_nav_mememan_interrupt.xml
+roslaunch bt_sample bt_sample.launch
 ```
 * Open 4th terminal and pub interrupt event. (ROS 1 environment)
 ```
