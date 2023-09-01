@@ -8,6 +8,7 @@
 #endif
 #include <behaviortree_cpp_v3/bt_factory.h>
 #include <behaviortree_cpp_v3/loggers/bt_cout_logger.h>
+#include <behaviortree_cpp_v3/loggers/bt_zmq_publisher.h>
 
 using namespace BT;
 
@@ -36,6 +37,9 @@ int main(int argc, char **argv) {
   // the beginning). The currently supported format is XML. IMPORTANT: when the
   // object "tree" goes out of scope, all the TreeNodes are destroyed
   auto tree = factory.createTreeFromFile(xml_filename);
+
+  // ZMQ server for Groot
+  auto publisher_zmq = std::make_shared<BT::PublisherZMQ>(tree, 10, 1666, 1667);
 
   // Create a logger
   StdCoutLogger logger_cout(tree);
